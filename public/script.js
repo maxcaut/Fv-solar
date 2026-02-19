@@ -1,16 +1,16 @@
 const valoreEl = document.getElementById("valore");
-const refreshBtn = document.getElementById("refreshBtn");
+const loadBtn = document.getElementById("loadBtn");
+const cittaInput = document.getElementById("cittaInput");
 
-const API_URL = "/meteo"; // chiamata al server stesso
-
-async function caricaValore() {
+async function caricaValore(citta) {
   valoreEl.textContent = "Caricamento...";
+
   try {
-    const res = await fetch(API_URL);
+    const res = await fetch(`/meteo?citta=${encodeURIComponent(citta)}`);
     const data = await res.json();
 
     if (data.successo && data.valore) {
-      valoreEl.textContent = data.valore;
+      valoreEl.textContent = `${data.valore} (${citta})`;
     } else {
       valoreEl.textContent = "Errore nel recupero";
     }
@@ -20,5 +20,15 @@ async function caricaValore() {
   }
 }
 
-window.addEventListener("load", caricaValore);
-refreshBtn.addEventListener("click", caricaValore);
+// Aggiorna al click
+loadBtn.addEventListener("click", () => {
+  const citta = cittaInput.value.trim();
+  if (citta) caricaValore(citta);
+});
+
+// Esegui caricamento automatico se vuoi una città default
+window.addEventListener("load", () => {
+  const defaultCity = "somma vesuviana";
+  cittaInput.value = defaultCity;
+  caricaValore(defaultCity);
+});
