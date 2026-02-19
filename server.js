@@ -5,9 +5,7 @@ const cheerio = require("cheerio");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.get("/", (req, res) => {
-  res.send("Server Meteo attivo 🚀 Vai su /meteo");
-});
+
 
 app.get("/meteo", async (req, res) => {
   const url = "https://www.ilmeteo.it/meteo/somma+vesuviana";
