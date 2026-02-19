@@ -1,6 +1,9 @@
 const valoreEl = document.getElementById("valore");
 const loadBtn = document.getElementById("loadBtn");
 const cittaInput = document.getElementById("cittaInput");
+const potenzaInput = document.getElementById("potenzaInput");
+
+let fattore = potenzaInput / 3;
 
 async function caricaValore(citta) {
   valoreEl.textContent = "Caricamento dati...";
@@ -10,7 +13,7 @@ async function caricaValore(citta) {
     const data = await res.json();
 
     if (data.successo && data.valore) {
-      valoreEl.textContent = `${data.valore} Totali`;
+      valoreEl.textContent = `${data.valore*fattore} Totali`;
     } else {
       valoreEl.textContent = "Errore nel recupero";
     }
