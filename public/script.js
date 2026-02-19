@@ -8,11 +8,7 @@ const potenzaInput = document.getElementById("potenzaInput");
 async function caricaValore(citta) {
   valoreEl.textContent = "Caricamento dati...";
 
-  let numero = parseFloat(potenzaInput.value);
-  
-  if (isNan(numero) || numero<=0 ){
-    numero = 3;}
-  
+  let numero = parseFloat(potenzaInput.value);  
   let fattore = numero/3;
   
 
