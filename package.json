@@ -1,7 +1,7 @@
 {
-  "name": "meteo-scraper",
+  "name": "Fv-scraper",
   "version": "1.0.0",
-  "description": "Scraper IlMeteo + Frontend",
+  "description": "Scraper IlMeteo + Frontend dinamico",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
