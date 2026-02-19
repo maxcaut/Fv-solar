@@ -58,7 +58,7 @@ button:hover {
 .flash{
   margin-left: -75%;
   margin-top: -50%;
-  box-shadow: 15px rgba(255,165,0,0.2);
+  filter: drop-shadow(0 15px 15px rgba(255,165,0,0.8));
   
 }
 
