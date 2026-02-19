@@ -9,16 +9,26 @@
 <body>
   <div class="container">
     <img class="flash" src="/img/Flash-col.png" alt="flash">
-    <h1>Produzione Fv ☀️</h1>
+    
+    <h1>Produzione Fotovoltaivo</h1>
 
-    <input type="text" id="cittaInput" placeholder="Inserisci città (es: Somma Vesuviana)">
+    
+   <div class="input-group">
+      <input type="text" id="cittaInput" placeholder=" " required>
+      <label for="cittaInput">Inserisci qui la città</label>
+    </div> 
+    <div class="input-group">
+      <input type="number" id="potenzaInput" placeholder=" " >
+      <label for="potenzaInput">Inserisci la potenza nominale del tuo Impianto</label>
+    </div>
+
+
     <button id="loadBtn">Carica dati Fv</button>
-    <div id="">La Produzione Giornaliera è:</div>
+    <div id="">La Produzione Giornaliera <span class="stima">Stimata</span> è:</div>
 
     <div id="valore" class="valore">Inserisci una città</div>
-    <div id="">Per un impianto da 3kwh</div>
-
-    <input type="number" id="potenzaInput" placeholder="Inserisci potenza tuo impianto" value="3" >
+    <div id="potenza-impianto">Per un impianto da 0kwh</div>
+    
 
 
 

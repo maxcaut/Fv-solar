@@ -8,8 +8,13 @@ const potenzaInput = document.getElementById("potenzaInput");
 async function caricaValore(citta) {
   valoreEl.textContent = "Caricamento dati...";
 
-  let numero = parseFloat(potenzaInput.value);  
+  let numero = parseFloat(potenzaInput.value); 
+  if(isNaN(numero)){
+    numero = 3;
+  }
   let fattore = numero/3;
+
+  document.getElementById("potenza-impianto").textContent = `Per un impianto da ${potenza} kWh`;
   
 
   try {
@@ -34,7 +39,7 @@ loadBtn.addEventListener("click", () => {
   if (citta) caricaValore(citta);
 });
 
-// Esegui caricamento automatico se vuoi una città default
+//Esegui caricamento automatico se vuoi una città default
 window.addEventListener("load", () => {
   const defaultCity = "somma vesuviana";
   cittaInput.value = defaultCity;
