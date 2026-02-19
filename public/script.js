@@ -15,7 +15,7 @@ async function caricaValore(citta) {
   };
   let fattore = numero/3;
 
-  document.getElementById("potenza-impianto").textContent = `Per un impianto da ${potenzaInput} kWh`;
+  document.getElementById("potenza-impianto").textContent = `Per un impianto da ${numero} kWh`;
   
 
   try {
