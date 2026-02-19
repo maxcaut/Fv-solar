@@ -17,7 +17,7 @@ async function caricaValore(citta) {
     const data = await res.json();
 
     if (data.successo && data.valore) {
-      valoreEl.textContent = `${(parseFloat(data.valore) * fattore).toFixed(3)} Totali`;
+      valoreEl.textContent = `${(parseFloat(data.valore) * fattore).toFixed(1)} kWh Totali`;
     } else {
       valoreEl.textContent = "Errore nel recupero";
     }
