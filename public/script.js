@@ -3,7 +3,7 @@ const loadBtn = document.getElementById("loadBtn");
 const cittaInput = document.getElementById("cittaInput");
 
 async function caricaValore(citta) {
-  valoreEl.textContent = "Caricamento...";
+  valoreEl.textContent = "Caricamento dati...";
 
   try {
     const res = await fetch(`/meteo?citta=${encodeURIComponent(citta)}`);
