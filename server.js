@@ -1,15 +1,13 @@
 const express = require("express");
-const puppeteer = require("puppeteer-core");
+const puppeteer = require("puppeteer");
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Endpoint principale
 app.get("/", (req, res) => {
   res.send("Server Meteo attivo 🚀 Vai su /meteo");
 });
 
-// Endpoint scraping
 app.get("/meteo", async (req, res) => {
   const url = "https://www.ilmeteo.it/meteo/somma+vesuviana";
 
@@ -17,13 +15,12 @@ app.get("/meteo", async (req, res) => {
 
   try {
     browser = await puppeteer.launch({
-      executablePath: process.env.PUPPETEER_EXECUTABLE_PATH || "/usr/bin/chromium",
       args: ["--no-sandbox", "--disable-setuid-sandbox"],
       headless: true
     });
 
     const page = await browser.newPage();
-    await page.goto(url, { waitUntil: "networkidle2", timeout: 0 });
+    await page.goto(url, { waitUntil: "networkidle2" });
 
     const valore = await page.evaluate(() => {
       const text = document.body.innerText;
