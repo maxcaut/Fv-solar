@@ -10,7 +10,7 @@ async function caricaValore(citta) {
     const data = await res.json();
 
     if (data.successo && data.valore) {
-      valoreEl.textContent = `${data.valore}+" Totali"`;
+      valoreEl.textContent = `${data.valore} Totali`;
     } else {
       valoreEl.textContent = "Errore nel recupero";
     }
