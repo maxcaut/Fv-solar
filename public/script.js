@@ -18,7 +18,7 @@ async function caricaValore(citta) {
     const data = await res.json();
 
     if (data.successo && data.valore) {
-      valoreEl.textContent = `${(data.valore * fattore)} Totali`;
+      valoreEl.textContent = `${data.valore} Totali`;
     } else {
       valoreEl.textContent = "Errore nel recupero";
     }
@@ -27,6 +27,7 @@ async function caricaValore(citta) {
     console.error(error);
   }
 }
+console.log(fattore);
 
 // Aggiorna al click
 loadBtn.addEventListener("click", () => {
