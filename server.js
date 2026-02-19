@@ -6,12 +6,14 @@ const path = require("path");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Serve i file statici del front-end
+// Serve file statici
 app.use(express.static(path.join(__dirname, "public")));
 
-// Endpoint API /meteo
+// Endpoint API /meteo con parametro città
 app.get("/meteo", async (req, res) => {
-  const url = "https://www.ilmeteo.it/meteo/somma+vesuviana";
+  let citta = req.query.citta || "somma+vesuviana"; // default
+  citta = citta.trim().replace(/\s+/g, "+");       // sostituisci spazi con '+'
+  const url = `https://www.ilmeteo.it/meteo/${citta}`;
 
   try {
     const response = await axios.get(url, {
@@ -34,7 +36,7 @@ app.get("/meteo", async (req, res) => {
   }
 });
 
-// Endpoint root / serve index.html
+// Endpoint root serve index.html
 app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
