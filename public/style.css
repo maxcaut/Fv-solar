@@ -14,6 +14,7 @@ body {
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
   text-align: center;
+  max-width: 400px;
 }
 
 h1 {
@@ -21,11 +22,13 @@ h1 {
   color: #333;
 }
 
-.valore {
-  font-size: 2em;
-  font-weight: bold;
-  margin-bottom: 20px;
-  color: #007acc;
+input {
+  width: calc(100% - 20px);
+  padding: 10px;
+  font-size: 1em;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
 }
 
 button {
@@ -37,8 +40,16 @@ button {
   border-radius: 8px;
   cursor: pointer;
   transition: background 0.2s;
+  margin-bottom: 20px;
 }
 
 button:hover {
   background: #005fa3;
+}
+
+.valore {
+  font-size: 2em;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #007acc;
 }
