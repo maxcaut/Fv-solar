@@ -2,7 +2,7 @@ const valoreEl = document.getElementById("valore");
 const refreshBtn = document.getElementById("refreshBtn");
 
 // Inserisci qui il tuo endpoint Render o locale
-const API_URL = "https://tuo-progetto.onrender.com/meteo";
+const API_URL = "https://fv-solar-1.onrender.com/meteo";
 
 async function caricaValore() {
   valoreEl.textContent = "Caricamento...";
