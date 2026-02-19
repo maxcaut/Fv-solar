@@ -9,7 +9,7 @@ async function caricaValore(citta) {
   valoreEl.textContent = "Caricamento dati...";
 
   let numero = parseFloat(potenzaInput.value);
-  if (isNan(numero) || numero<=0 {
+  if (isNan(numero) || numero<=0 ){
     numero = 3;}
   let fattore = numero/3;
 
