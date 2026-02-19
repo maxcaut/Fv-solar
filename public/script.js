@@ -3,7 +3,8 @@ const loadBtn = document.getElementById("loadBtn");
 const cittaInput = document.getElementById("cittaInput");
 const potenzaInput = document.getElementById("potenzaInput");
 
-let fattore = potenzaInput.value / 3;
+let numero = parseFloat(potenzaInput.value);
+let fattore = numero/3;
 
 async function caricaValore(citta) {
   valoreEl.textContent = "Caricamento dati...";
