@@ -1,7 +1,7 @@
 {
   "name": "meteo-scraper",
   "version": "1.0.0",
-  "description": "Scraper kWh IlMeteo per Render",
+  "description": "Scraper kWh IlMeteo per Railway",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
