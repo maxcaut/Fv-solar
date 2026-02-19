@@ -32,7 +32,7 @@ app.get("/meteo", async (req, res) => {
 
     res.json({
       successo: true,
-      valore: valore
+      valore
     });
 
   } catch (error) {
