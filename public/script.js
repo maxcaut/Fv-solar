@@ -9,12 +9,13 @@ async function caricaValore(citta) {
   valoreEl.textContent = "Caricamento dati...";
 
   let numero = parseFloat(potenzaInput.value); 
-  if(isNaN(numero)){
+  if(isNaN(numero)|| numero <= 0){
     numero = 3;
-  }
+    console.log(numero);
+  };
   let fattore = numero/3;
 
-  document.getElementById("potenza-impianto").textContent = `Per un impianto da ${potenza} kWh`;
+  document.getElementById("potenza-impianto").textContent = `Per un impianto da ${potenzaInput} kWh`;
   
 
   try {
