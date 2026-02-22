@@ -61,7 +61,7 @@ button:hover {
   
 }
 
-.stima{
+.stima span{
   color: green;
   font-weight: bold;}
 
@@ -102,11 +102,41 @@ button:hover {
 }
 
 
+#logoutbtn{
+  margin-top: 20px;
+  background-color: red;
+}
 
+#saveBtn{
+  background-color: rgb(45, 134, 85);
+}
 
+.stima{
+  font-size: 1.3rem;
+}
 
+#registrati{
+  background-color: rgba(255,165,0,1);
+}
 
+#accedi{
+  background-color: green;
+}
 
+#loadBtn{
+  background-color: rgba(255,165,0,1);
+}
+
+#loginPassword{
+ margin: 5px; 
+ padding: 10px;
+ margin-bottom: 25px;
+}
+
+#loginEmail{
+  margin: 5px;
+  padding: 10px;
+}
 
 
 
