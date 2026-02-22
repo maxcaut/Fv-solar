@@ -251,8 +251,15 @@ async function checkUser() {
 
 // RESET PASSWORD - schermo e invio nuova password
 window.addEventListener("load", () => {
-  const accessToken = new URLSearchParams(window.location.search).get("access_token");
-  if(accessToken){
+  let accessToken = new URLSearchParams(window.location.search).get("token");
+
+  // Se non trovato in search, prova nell'hash
+  if (!accessToken && window.location.hash) {
+    const hashParams = new URLSearchParams(window.location.hash.substring(1));
+    accessToken = hashParams.get("access_token");
+  }
+
+  if (accessToken) {
     loginScreen.style.display = "none";
     resetScreen.style.display = "block";
     window.resetAccessToken = accessToken;
