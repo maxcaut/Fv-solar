@@ -261,6 +261,7 @@ window.addEventListener("load", () => {
 
   if (accessToken) {
     loginScreen.style.display = "none";
+    MainScreen.style.display = "none";
     resetScreen.style.display = "block";
     window.resetAccessToken = accessToken;
   }
