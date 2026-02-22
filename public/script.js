@@ -288,7 +288,7 @@ submitNewPasswordBtn.addEventListener("click", async () => {
      alert("Errore: " + error.message); 
     }
     else{ 
-      alert("Password aggiornata con successo! Torna al login."); 
+      alert("Password aggiornata con successo! "); 
       window.resetAccessToken = null; 
       window.location.reload();
     }
