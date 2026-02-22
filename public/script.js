@@ -6,6 +6,10 @@ const loginScreen = document.getElementById("login-screen");
 const MainScreen = document.getElementById("main-screen");
 const loginPassword = document.getElementById("loginPassword");
 const resetpassbtn = document.getElementById("resetPasswordBtn");
+const resetScreen = document.getElementById("reset-screen");
+const submitNewPasswordBtn = document.getElementById("submitNewPassword");
+const messaggioReset = document.getElementById("messaggio-reset");
+const messaggioResetInterno = document.getElementById("messaggio-reset-interno");
 
 const SUPABASE_URL = "https://czdakmcnkqvcxwkgyhwx.supabase.co";       // dal tuo progetto
 const SUPABASE_ANON_KEY = "sb_publishable_4azTkKHrQCK-T-7rlj5Hzg_3WeWnLcK"; // dal tuo progetto
@@ -240,6 +244,43 @@ async function checkUser() {
         
     }
 }
+
+
+
+// RESET PASSWORD - schermo e invio nuova password
+window.addEventListener("load", () => {
+  const accessToken = new URLSearchParams(window.location.search).get("access_token");
+  if(accessToken){
+    loginScreen.style.display = "none";
+    resetScreen.style.display = "block";
+    window.resetAccessToken = accessToken;
+  }
+});
+
+submitNewPasswordBtn.addEventListener("click", async () => {
+  const nuovaPassword = document.getElementById("nuovaPassword").value.trim();
+  const token = window.resetAccessToken;
+
+  if(!nuovaPassword || !token){ 
+    messaggioResetInterno.style.color="red"; 
+    messaggioResetInterno.textContent="Dati mancanti. Link non valido."; 
+    return;
+  }
+
+  try{
+    const { error } = await sb.auth.updateUser({ access_token: token, password: nuovaPassword });
+    if(error){ messaggioResetInterno.style.color="red"; messaggioResetInterno.textContent="Errore: " + error.message; }
+    else{ 
+      messaggioResetInterno.style.color="green"; 
+      messaggioResetInterno.textContent="Password aggiornata con successo! Torna al login."; 
+      window.resetAccessToken = null; 
+    }
+  } catch(err){
+    console.error(err);
+    messaggioResetInterno.style.color="red"; 
+    messaggioResetInterno.textContent="Errore durante il reset della password.";
+  }
+});
 
 
 

@@ -11,46 +11,48 @@
   <div class="container">
     <img class="flash" src="img/Flash-col.png" alt="flash">
 
+    <!-- LOGIN SCREEN -->
     <div id="login-screen">
-      <h1> Accedi o Registrati</h1>
+      <h1>Accedi o Registrati</h1>
       <input type="email" id="loginEmail" placeholder="Email" >
       <input type="password" id="loginPassword" placeholder="Password" >
       
       <button onclick="handleLogin()" id="accedi">Accedi</button>
-      
       <button onclick="signup()" id="registrati">Registrati</button>
       <button id="resetPasswordBtn">Hai dimenticato la password?</button>
-      
+      <div id="messaggio-reset" style="margin-top:10px; color:green;"></div>
     </div>
 
+    <!-- RESET PASSWORD SCREEN -->
+    <div id="reset-screen" style="display:none;">
+      <h2>Reimposta la password</h2>
+      <input type="password" id="nuovaPassword" placeholder="Nuova password">
+      <button id="submitNewPassword">Conferma</button>
+      <div id="messaggio-reset-interno" style="margin-top:10px;"></div>
+    </div>
 
-
-
-
-
-
-
-   <div id="main-screen">
-      <h1>Produzione Fotovoltaivo</h1>
+    <!-- MAIN SCREEN -->
+    <div id="main-screen">
+      <h1>Produzione Fotovoltaico</h1>
       <div class="input-group">
-          <input type="text" id="cittaInput" placeholder=" " required>
-          <label for="cittaInput">Inserisci qui la città</label>
-        </div> 
-        <div class="input-group">
-          <input type="number" id="potenzaInput" placeholder=" " >
-          <label for="potenzaInput">Inserisci potenza nominale Impianto</label>
-        </div>
+        <input type="text" id="cittaInput" placeholder=" " required>
+        <label for="cittaInput">Inserisci qui la città</label>
+      </div> 
+      <div class="input-group">
+        <input type="number" id="potenzaInput" placeholder=" ">
+        <label for="potenzaInput">Inserisci potenza nominale Impianto</label>
+      </div>
 
+      <button id="loadBtn">Carica dati Fv Aggiornati</button>
+      <button onclick="salvadati()" id="saveBtn">Salva i tuoi dati</button>
+      <div class="stima">La Produzione Giornaliera <span class="stima">Stimata</span> è:</div>
 
-        <button id="loadBtn">Carica dati Fv Aggiornati</button>
-        <button onclick="salvadati()" id="saveBtn">Salva i tuoi dati</button>
-        <div class="stima">La Produzione Giornaliera <span class="stima">Stimata</span> è:</div>
-
-        <div id="valore" class="valore">Inserisci una città</div>
-        <div id="potenza-impianto">Per un impianto da 3 kwh</div>
-        <button onclick="logout()" id="logoutbtn">Log Out</button>
+      <div id="valore" class="valore">Inserisci una città</div>
+      <div id="potenza-impianto">Per un impianto da 3 kwh</div>
+      <button onclick="logout()" id="logoutbtn">Log Out</button>
     </div> 
   </div>
+
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
   <script src="script.js"></script>
 </body>
