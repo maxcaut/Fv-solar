@@ -9,7 +9,6 @@ const resetpassbtn = document.getElementById("resetPasswordBtn");
 const resetScreen = document.getElementById("reset-screen");
 const submitNewPasswordBtn = document.getElementById("submitNewPassword");
 const messaggioReset = document.getElementById("messaggio-reset");
-const messaggioResetInterno = document.getElementById("messaggio-reset-interno");
 const changetbtn = document.getElementById("changetbtn");
 const changePasswordBtn = document.getElementById("changePasswordBtn");
 const changePasswordDiv = document.getElementById("changePasswordDiv");
@@ -279,24 +278,23 @@ submitNewPasswordBtn.addEventListener("click", async () => {
   const token = window.resetAccessToken;
 
   if(!nuovaPassword || !token){ 
-    messaggioResetInterno.style.color="red"; 
-    messaggioResetInterno.textContent="Dati mancanti. Link non valido."; 
+    alert("Dati mancanti. Link non valido."); 
     return;
   }
 
   try{
     const { error } = await sb.auth.updateUser({ access_token: token, password: nuovaPassword });
-    if(error){ messaggioResetInterno.style.color="red"; messaggioResetInterno.textContent="Errore: " + error.message; }
+    if(error){ 
+     alert("Errore: " + error.message); 
+    }
     else{ 
-      messaggioResetInterno.style.color="green"; 
-      messaggioResetInterno.textContent="Password aggiornata con successo! Torna al login."; 
+      alert("Password aggiornata con successo! Torna al login."); 
       window.resetAccessToken = null; 
       window.location.reload();
     }
   } catch(err){
     console.error(err);
-    messaggioResetInterno.style.color="red"; 
-    messaggioResetInterno.textContent="Errore durante il reset della password.";
+    alert("Errore durante il reset della password.");
   }
 });
 
