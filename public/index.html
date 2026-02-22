@@ -24,7 +24,7 @@
     </div>
 
     <!-- RESET PASSWORD SCREEN -->
-    <div id="reset-screen" style="display:none;">
+    <div id="reset-screen" >
       <h2>Reimposta la password</h2>
       <input type="password" id="nuovaPassword" placeholder="Nuova password">
       <button id="submitNewPassword">Conferma</button>
@@ -50,7 +50,19 @@
       <div id="valore" class="valore">Inserisci una città</div>
       <div id="potenza-impianto">Per un impianto da 3 kwh</div>
       <button onclick="logout()" id="logoutbtn">Log Out</button>
+
+      <button id="changePasswordBtn">Reimposta Password</button>
+
+      
     </div> 
+    <!-- Campo nuova password nascosto -->
+      <div id="changePasswordDiv" style="display:none; margin-top:10px;">
+        <h1>Inserisci la Nuova Password</h1>
+        <input type="password" id="newPasswordInput" placeholder="Nuova password">
+        <button id="submitNewPasswordLogged">Conferma</button>
+        <button onclick="annulla()" id="annullasubmitNewPasswordLogged">Annulla</button>
+      </div>
+    
   </div>
 
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>

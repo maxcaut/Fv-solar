@@ -138,5 +138,12 @@ button:hover {
   padding: 10px;
 }
 
+#submitNewPasswordLogged{
+  background-color: green;
+}
+
+#annullasubmitNewPasswordLogged{
+  background-color: red;
+}
 
 

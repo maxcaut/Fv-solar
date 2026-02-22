@@ -10,6 +10,10 @@ const resetScreen = document.getElementById("reset-screen");
 const submitNewPasswordBtn = document.getElementById("submitNewPassword");
 const messaggioReset = document.getElementById("messaggio-reset");
 const messaggioResetInterno = document.getElementById("messaggio-reset-interno");
+const changetbtn = document.getElementById("changetbtn");
+const changePasswordBtn = document.getElementById("changePasswordBtn");
+const changePasswordDiv = document.getElementById("changePasswordDiv");
+const submitNewPasswordLogged = document.getElementById("submitNewPasswordLogged");
 
 const SUPABASE_URL = "https://czdakmcnkqvcxwkgyhwx.supabase.co";       // dal tuo progetto
 const SUPABASE_ANON_KEY = "sb_publishable_4azTkKHrQCK-T-7rlj5Hzg_3WeWnLcK"; // dal tuo progetto
@@ -18,9 +22,11 @@ const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 
 
 
-//nascondo main screen
+//nascondo main screen e reset screen
 
 MainScreen.style.display = "none";
+resetScreen.style.display="none";
+changePasswordDiv.style.display = "none";
 
 
 
@@ -155,7 +161,6 @@ async function logout() {
 }
 
 
-//password dimenticata
 
 // Pulsante reset password
 resetpassbtn.addEventListener("click", async () => {
@@ -183,9 +188,6 @@ resetpassbtn.addEventListener("click", async () => {
     alert("Errore durante la richiesta di reset.");
   }
 });
-
-
-
 
 
 
@@ -257,6 +259,7 @@ window.addEventListener("load", () => {
   }
 });
 
+// cambio password con link
 submitNewPasswordBtn.addEventListener("click", async () => {
   const nuovaPassword = document.getElementById("nuovaPassword").value.trim();
   const token = window.resetAccessToken;
@@ -283,6 +286,47 @@ submitNewPasswordBtn.addEventListener("click", async () => {
 });
 
 
+
+// cambio password da loggato
+
+// Mostra il campo nuova password al click
+changePasswordBtn.addEventListener("click", () => {
+  MainScreen.style.display = "none";
+  changePasswordDiv.style.display = "block";
+});
+
+// Invia la nuova password direttamente a Supabase
+submitNewPasswordLogged.addEventListener("click", async () => {
+  const nuovaPassword = document.getElementById("newPasswordInput").value.trim();
+
+  if (!nuovaPassword) {
+    alert("Inserisci una nuova password.");
+    return;
+  }
+
+  try {
+    const { data, error } = await sb.auth.updateUser({
+      password: nuovaPassword
+    });
+
+    if (error) {
+      alert("Errore: " + error.message);
+    } else {
+      alert("Password aggiornata con successo!");
+      document.getElementById("newPasswordInput").value = "";
+      changePasswordDiv.style.display = "none";
+      MainScreen.style.display = "block";
+    }
+  } catch (err) {
+    console.error(err);
+    alert("Errore durante il cambio password.");
+  }
+});
+
+function annulla(){
+      changePasswordDiv.style.display = "none";
+      MainScreen.style.display = "block";
+};
 
 // Sostituisce la tua vecchia chiamata init() con questa
 checkUser();
