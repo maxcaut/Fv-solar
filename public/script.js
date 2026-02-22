@@ -238,11 +238,13 @@ async function checkUser() {
         // Utente loggato: mostra la dashboard e carica i dati
         loginScreen.style.display = "none";
         MainScreen.style.display = "block";
+        resetScreen.style.display = "none";
         caricaDatiUtente();
     } else {
         // Utente non loggato: mostra solo il login
         loginScreen.style.display = "block";
         MainScreen.style.display = "none";
+        resetScreen.style.display = "none";
         
     }
 }
@@ -250,21 +252,25 @@ async function checkUser() {
 
 
 // RESET PASSWORD - schermo e invio nuova password
-window.addEventListener("load", () => {
+window.addEventListener("load", async () => {
+
   let accessToken = new URLSearchParams(window.location.search).get("token");
 
-  // Se non trovato in search, prova nell'hash
   if (!accessToken && window.location.hash) {
     const hashParams = new URLSearchParams(window.location.hash.substring(1));
     accessToken = hashParams.get("access_token");
   }
 
   if (accessToken) {
+    window.resetAccessToken = accessToken;
     loginScreen.style.display = "none";
     MainScreen.style.display = "none";
     resetScreen.style.display = "block";
-    window.resetAccessToken = accessToken;
+    return; 
   }
+
+  // SOLO se non è reset password
+  await checkUser();
 });
 
 // cambio password con link
@@ -285,6 +291,7 @@ submitNewPasswordBtn.addEventListener("click", async () => {
       messaggioResetInterno.style.color="green"; 
       messaggioResetInterno.textContent="Password aggiornata con successo! Torna al login."; 
       window.resetAccessToken = null; 
+      window.location.reload();
     }
   } catch(err){
     console.error(err);
@@ -336,5 +343,4 @@ function annulla(){
       MainScreen.style.display = "block";
 };
 
-// Sostituisce la tua vecchia chiamata init() con questa
-checkUser();
+
