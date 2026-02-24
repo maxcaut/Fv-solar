@@ -20,6 +20,9 @@ const PrivacyPolicy = document.getElementById("privacy");
 const preBack = document.getElementById("pre-back");
 const h1registrati = document.getElementById("h1registrati");
 const h1accedi = document.getElementById("h1accedi");
+const dashscreen = document.getElementById("dash-screen"); 
+const comunedash = document.getElementById("comunedash");
+const comunedash2 = document.getElementById("comunedash2");
 
 const SUPABASE_URL = "https://czdakmcnkqvcxwkgyhwx.supabase.co";       // dal tuo progetto
 const SUPABASE_ANON_KEY = "sb_publishable_4azTkKHrQCK-T-7rlj5Hzg_3WeWnLcK"; // dal tuo progetto
@@ -37,7 +40,7 @@ registrati.style.display ="none";
 PrivacyPolicy.style.display = "none";
 preBack.style.display = "none";
 h1registrati.style.display = "none";
-
+dashscreen.style.display = "none";
 
 
 
@@ -79,6 +82,7 @@ async function caricaValore(citta) {
 
     if (data.successo && data.valore) {
       valoreEl.textContent = `${(parseFloat(data.valore) * fattore).toFixed(1)} kWh Totali`;
+      document.getElementById("divrisultato").textContent = `${(parseFloat(data.valore) * fattore).toFixed(1)} kWh Totali`;
     } else {
       valoreEl.textContent = "Errore nel recupero";
     }
@@ -89,10 +93,44 @@ async function caricaValore(citta) {
 }
 
 
+// carica i valori di domani
+
+
+async function caricaValore2(citta) {
+  //valoreEl.textContent = "Caricamento dati...";
+
+  let numero = parseFloat(potenzaInput.value); 
+  if(isNaN(numero)|| numero <= 0){
+    numero = 3;
+    console.log(numero);
+  };
+  let fattore = numero/3;
+
+  //document.getElementById("potenza-impianto").textContent = `Per un impianto da ${numero} kWh`;
+  
+
+  try {
+    const res = await fetch(`/meteo?citta=${encodeURIComponent(citta)}/domani`);
+    const data = await res.json();
+
+    if (data.successo && data.valore) {
+      //valoreEl.textContent = `${(parseFloat(data.valore) * fattore).toFixed(1)} kWh Totali`;
+      document.getElementById("divrisultato2").textContent = `${(parseFloat(data.valore) * fattore).toFixed(1)} kWh Totali`;
+    } else {
+      //valoreEl.textContent = "Errore nel recupero";
+    }
+  } catch (error) {
+    //valoreEl.textContent = "Errore connessione";
+    console.error(error);
+  }
+}
+
+
 // Aggiorna al click
 loadBtn.addEventListener("click", () => {
   const citta = cittaInput.value.trim();
   if (citta) caricaValore(citta);
+  if (citta) caricaValore2(citta);
 });
 
 
@@ -169,6 +207,8 @@ async function caricaDatiUtente() {
   if (data) {
     // Inserisce nei campi input
     cittaInput.value = data.citta;
+    comunedash.textContent = data.citta;
+    comunedash2.textContent = data.citta;
     potenzaInput.value = data.impianto_kw;
 
     // Aggiorna automaticamente la stima
@@ -188,6 +228,14 @@ async function caricaDatiUtente() {
 async function logout() {
   await sb.auth.signOut();
   location.reload(); // Ricarica per bloccare la visualizzazione
+}
+
+
+//impostazioni
+
+function impostazioni(){
+  dashscreen.style.display = "none";
+  MainScreen.style.display = "block";
 }
 
 
@@ -270,14 +318,16 @@ async function checkUser() {
     if (session) {
         // Utente loggato: mostra la dashboard e carica i dati
         loginScreen.style.display = "none";
-        MainScreen.style.display = "block";
+        MainScreen.style.display = "none";
         resetScreen.style.display = "none";
+        dashscreen.style.display = "block";
         caricaDatiUtente();
     } else {
         // Utente non loggato: mostra solo il login
         loginScreen.style.display = "block";
         MainScreen.style.display = "none";
         resetScreen.style.display = "none";
+        dashscreen.style.display = "none";
         
     }
 }
