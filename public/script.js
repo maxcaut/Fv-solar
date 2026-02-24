@@ -110,7 +110,7 @@ async function caricaValore2(citta) {
   
 
   try {
-    const res = await fetch(`/meteo?citta=${encodeURIComponent(citta)}/domani`);
+    const res = await fetch(`/meteo/domani?citta=${encodeURIComponent(citta)}`);
     const data = await res.json();
 
     if (data.successo && data.valore) {
@@ -166,7 +166,7 @@ async function salvadati() {
   // ora puoi salvare nel database
   const { error } = await sb
     .from("profiles")
-    .insert([
+    .upsert([
       {
         user_id: userId,
         citta: document.getElementById("cittaInput").value,
