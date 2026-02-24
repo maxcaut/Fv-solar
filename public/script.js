@@ -20,6 +20,9 @@ const PrivacyPolicy = document.getElementById("privacy");
 const preBack = document.getElementById("pre-back");
 const h1registrati = document.getElementById("h1registrati");
 const h1accedi = document.getElementById("h1accedi");
+const dashscreen = document.getElementById("dash-screen");
+const comunedash = document.getElementById("comunedash");
+
 
 const SUPABASE_URL = "https://czdakmcnkqvcxwkgyhwx.supabase.co";       // dal tuo progetto
 const SUPABASE_ANON_KEY = "sb_publishable_4azTkKHrQCK-T-7rlj5Hzg_3WeWnLcK"; // dal tuo progetto
@@ -72,6 +75,7 @@ async function caricaValore(citta) {
 
   document.getElementById("potenza-impianto").textContent = `Per un impianto da ${numero} kWh`;
   
+  
 
   try {
     const res = await fetch(`/meteo?citta=${encodeURIComponent(citta)}`);
@@ -79,6 +83,7 @@ async function caricaValore(citta) {
 
     if (data.successo && data.valore) {
       valoreEl.textContent = `${(parseFloat(data.valore) * fattore).toFixed(1)} kWh Totali`;
+      document.getElementById("divrisultato").textContent = `${(parseFloat(data.valore) * fattore).toFixed(1)} kWh Totali`;
     } else {
       valoreEl.textContent = "Errore nel recupero";
     }
@@ -169,6 +174,7 @@ async function caricaDatiUtente() {
   if (data) {
     // Inserisce nei campi input
     cittaInput.value = data.citta;
+    comunedash.value = data.citta;
     potenzaInput.value = data.impianto_kw;
 
     // Aggiorna automaticamente la stima
@@ -254,10 +260,7 @@ async function signup() {
       password: password,
       });
   if (error) alert("Errore registrazione:"+ error.message);
-  else { 
-    alert("Registrazione ok: a breve riceverai una E-Mail. Conferma Li il tuo Account.");
-    location.reload();
-  }
+  else alert("Registrazione ok");
 }
 
 
@@ -270,8 +273,9 @@ async function checkUser() {
     if (session) {
         // Utente loggato: mostra la dashboard e carica i dati
         loginScreen.style.display = "none";
-        MainScreen.style.display = "block";
+        MainScreen.style.display = "none";
         resetScreen.style.display = "none";
+        dashscreen.style.display = "block";
         caricaDatiUtente();
     } else {
         // Utente non loggato: mostra solo il login
@@ -287,17 +291,14 @@ async function checkUser() {
 // RESET PASSWORD - schermo e invio nuova password
 window.addEventListener("load", async () => {
 
-  let accessToken = null;
-  let type = null;
+  let accessToken = new URLSearchParams(window.location.search).get("token");
 
-  if (window.location.hash) {
+  if (!accessToken && window.location.hash) {
     const hashParams = new URLSearchParams(window.location.hash.substring(1));
     accessToken = hashParams.get("access_token");
-    type = hashParams.get("type");
   }
 
-  // 🔐 SOLO se è un vero reset password
-  if (accessToken && type === "recovery") {
+  if (accessToken) {
     window.resetAccessToken = accessToken;
     loginScreen.style.display = "none";
     MainScreen.style.display = "none";
@@ -305,18 +306,9 @@ window.addEventListener("load", async () => {
     return; 
   }
 
-  // ✅ Se è conferma email (signup)
-  if (accessToken && type === "signup") {
-    // Supabase crea automaticamente la sessione
-    await sb.auth.getSession();
-    window.location.hash = ""; // pulisci URL
-  }
-
-  // Normale controllo utente
+  // SOLO se non è reset password
   await checkUser();
-  document.body.classList.add("ready");
 });
-
 
 // cambio password con link
 submitNewPasswordBtn.addEventListener("click", async () => {

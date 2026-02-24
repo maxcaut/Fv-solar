@@ -6,16 +6,7 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
-  opacity: 0;
-  transition: opacity 1s ease;
 }
-
-
-
-body.ready {
-  opacity: 1;
-}
-
 
 .container {
   background: white;
@@ -164,5 +155,53 @@ button:hover {
   
   margin: 0 auto;
   margin-top: 20px;
+}
+
+
+
+/* ----------------------------------------------- */
+
+#oggi, #domani{
+ 
+  width: 100%;
+  background-color: white;
+  margin-top: 8px;
+  margin-bottom: 50px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  display: flex;
+  justify-content: flex-start;
+  
+  
+
+}
+
+.imgbn{
+  opacity: 0.2;
+  text-align: left;
+  display: flex;
+  justify-content: start;
+  margin: auto 0px;
+  
+}
+
+.h6comune, .h6produzione{
+  margin: 0 auto;
+  margin-top: 8px;
+  
+}
+
+.containerProduzioneDash{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.divproduzione{
+  margin-right: 24px;
+}
+
+.divcomune, .div-divproduzione{
+  margin-top: 24px;
 }
 
