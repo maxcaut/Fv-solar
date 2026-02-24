@@ -41,6 +41,12 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
+// Endpoint root serve index.html
+app.get("/privacy-policy", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "privacy-policy.html"));
+});
+
+
 app.listen(PORT, () => {
   console.log(`Server attivo sulla porta ${PORT}`);
 });
