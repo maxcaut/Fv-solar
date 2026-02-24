@@ -249,23 +249,24 @@ button:hover {
 #logoutbtn{
   display: block;
   margin: 0 auto;
+  
 }
 
 #potenza-impianto{
   margin-bottom: 8px;
 }
 
-#impo, #saveBtn{
+#impo, #saveBtn, #loadBtn, #logoutbtn {
   display: flex;
   margin: 0 auto;
 }
-#imgimpo, #imgsave{
+#imgimpo, #imgsave, #imgreload, #imglogout{
   height: 20px;
   justify-content: center;
   margin-right: 10px;
 }
 
 
-#saveBtn{
-  margin-bottom: 10px;
+#saveBtn, #loadBtn{
+  margin-bottom: 15px;
 }
