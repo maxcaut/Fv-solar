@@ -254,7 +254,10 @@ async function signup() {
       password: password,
       });
   if (error) alert("Errore registrazione:"+ error.message);
-  else alert("Registrazione ok: a breve riceverai una E-Mail. Conferma Li il tuo Account.");
+  else { 
+    alert("Registrazione ok: a breve riceverai una E-Mail. Conferma Li il tuo Account.");
+    location.reload();
+  }
 }
 
 
