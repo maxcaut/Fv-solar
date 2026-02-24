@@ -314,6 +314,7 @@ window.addEventListener("load", async () => {
 
   // Normale controllo utente
   await checkUser();
+  document.body.classList.add("ready");
 });
 
 
