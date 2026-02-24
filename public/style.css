@@ -1,3 +1,7 @@
+*{
+  box-sizing: border-box;
+}
+
 body {
   font-family: Arial, sans-serif;
   background: #f0f8ff;
@@ -30,7 +34,7 @@ body.ready {
   border-radius: 15px;
   box-shadow: 0 4px 15px rgba(0,0,0,0.2);
   text-align: center;
-  max-width: 380px;
+  max-width: 500px;
 }
 
 h1 {
@@ -119,7 +123,7 @@ button:hover {
 
 
 #logoutbtn, #pre-back{
-  margin-top: 20px;
+  margin-top: 10px;
   background-color: red;
 }
 
@@ -161,7 +165,7 @@ button:hover {
 }
 
 
-#pre-registrati, #accedi, #saveBtn{
+#pre-registrati, #accedi, #saveBtn, #impo{
   background-color:  rgba(255,165,0,1);
   
   
@@ -173,12 +177,16 @@ button:hover {
   margin-top: 20px;
 }
 
+#resetPasswordBtn{
+  display: block;
+  margin: 0 auto;
+}
+
 /* ----------------------------------------------- */
 
 #oggi, #domani{
  
   width: 100%;
-  background-color: white;
   margin-top: 8px;
   margin-bottom: 50px;
   border-radius: 15px;
@@ -187,7 +195,6 @@ button:hover {
   justify-content: flex-start;
   
   
-
 }
 
 .imgbn{
@@ -205,6 +212,15 @@ button:hover {
   
 }
 
+.h6produzione{
+  color: green;
+  font-size: 1rem;
+}
+
+.h6comune{
+  font-size: 0.8rem;
+}
+
 .containerProduzioneDash{
   width: 100%;
   display: flex;
@@ -219,3 +235,37 @@ button:hover {
   margin-top: 24px;
 }
 
+#dash-screen{
+  width: 100%;
+}
+
+@media (max-width: 498px) {
+  .container {
+    
+    padding: 30px 30px;
+  }
+}
+
+#logoutbtn{
+  display: block;
+  margin: 0 auto;
+}
+
+#potenza-impianto{
+  margin-bottom: 8px;
+}
+
+#impo, #saveBtn{
+  display: flex;
+  margin: 0 auto;
+}
+#imgimpo, #imgsave{
+  height: 20px;
+  justify-content: center;
+  margin-right: 10px;
+}
+
+
+#saveBtn{
+  margin-bottom: 10px;
+}
