@@ -213,6 +213,7 @@ async function caricaDatiUtente() {
 
     // Aggiorna automaticamente la stima
     caricaValore(data.citta);
+    caricaValore2(data.citta);
   }
 
   if (!data) {
