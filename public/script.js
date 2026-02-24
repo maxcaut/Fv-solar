@@ -284,14 +284,17 @@ async function checkUser() {
 // RESET PASSWORD - schermo e invio nuova password
 window.addEventListener("load", async () => {
 
-  let accessToken = new URLSearchParams(window.location.search).get("token");
+  let accessToken = null;
+  let type = null;
 
-  if (!accessToken && window.location.hash) {
+  if (window.location.hash) {
     const hashParams = new URLSearchParams(window.location.hash.substring(1));
     accessToken = hashParams.get("access_token");
+    type = hashParams.get("type");
   }
 
-  if (accessToken) {
+  // 🔐 SOLO se è un vero reset password
+  if (accessToken && type === "recovery") {
     window.resetAccessToken = accessToken;
     loginScreen.style.display = "none";
     MainScreen.style.display = "none";
@@ -299,9 +302,17 @@ window.addEventListener("load", async () => {
     return; 
   }
 
-  // SOLO se non è reset password
+  // ✅ Se è conferma email (signup)
+  if (accessToken && type === "signup") {
+    // Supabase crea automaticamente la sessione
+    await sb.auth.getSession();
+    window.location.hash = ""; // pulisci URL
+  }
+
+  // Normale controllo utente
   await checkUser();
 });
+
 
 // cambio password con link
 submitNewPasswordBtn.addEventListener("click", async () => {
