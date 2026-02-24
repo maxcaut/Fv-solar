@@ -15,12 +15,16 @@
 
     <!-- LOGIN SCREEN -->
     <div id="login-screen">
-      <h1>Accedi o Registrati</h1>
+      <h1 id="h1accedi">Accedi</h1>
+      <h1 id="h1registrati">Registrati</h1>
       <input type="email" id="loginEmail" placeholder="Email" >
       <input type="password" id="loginPassword" placeholder="Password" >
       
       <button onclick="handleLogin()" id="accedi">Accedi</button>
       <button onclick="signup()" id="registrati">Registrati</button>
+       <button onclick="relo()" id="pre-back">Indietro</button>
+      <button onclick="preregistrati()" id="pre-registrati">Registrati</button>
+      <h4 id="privacy">Registrandoti accetti ESPLICITAMENTE le <a href="/privacy-policy"> Privacy Policy</a></h4>
       <button id="resetPasswordBtn">Hai dimenticato la password?</button>
       <div id="messaggio-reset" style="margin-top:10px; color:green;"></div>
       <h6>©Powered By MarcoCau</h6>

@@ -1,0 +1,24 @@
+ body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 40px;
+            max-width: 900px;
+            color: #333;
+        }
+        h1, h2 {
+            color: rgba(255,165,0,1);
+        }
+        h1 {
+            border-bottom: 2px solid #0a7a5c;
+            padding-bottom: 10px;
+        }
+        .container {
+            margin: auto;
+        }
+        .updated {
+            color: #666;
+            font-size: 0.9em;
+        }
+        a {
+            color: #0a7a5c;
+        }

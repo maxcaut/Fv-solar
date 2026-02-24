@@ -13,6 +13,13 @@ const changetbtn = document.getElementById("changetbtn");
 const changePasswordBtn = document.getElementById("changePasswordBtn");
 const changePasswordDiv = document.getElementById("changePasswordDiv");
 const submitNewPasswordLogged = document.getElementById("submitNewPasswordLogged");
+const registrati = document.getElementById("registrati");
+const accedi = document.getElementById("accedi");
+const preRegistrati = document.getElementById("pre-registrati");
+const PrivacyPolicy = document.getElementById("privacy");
+const preBack = document.getElementById("pre-back");
+const h1registrati = document.getElementById("h1registrati");
+const h1accedi = document.getElementById("h1accedi");
 
 const SUPABASE_URL = "https://czdakmcnkqvcxwkgyhwx.supabase.co";       // dal tuo progetto
 const SUPABASE_ANON_KEY = "sb_publishable_4azTkKHrQCK-T-7rlj5Hzg_3WeWnLcK"; // dal tuo progetto
@@ -26,7 +33,31 @@ const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
 MainScreen.style.display = "none";
 resetScreen.style.display="none";
 changePasswordDiv.style.display = "none";
+registrati.style.display ="none";
+PrivacyPolicy.style.display = "none";
+preBack.style.display = "none";
+h1registrati.style.display = "none";
 
+
+
+
+function preregistrati(){
+  accedi.style.display = "none";
+  resetpassbtn.style.display = "none";
+  preRegistrati.style.display = "none";
+  h1accedi.style.display = "none";
+  registrati.style.display ="block";
+  PrivacyPolicy.style.display = "block";
+  preBack.style.display = "block";
+  h1registrati.style.display = "block";
+  
+
+};
+
+
+function relo(){
+  location.reload();
+}
 
 
 async function caricaValore(citta) {
