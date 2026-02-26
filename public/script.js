@@ -23,6 +23,7 @@ const h1accedi = document.getElementById("h1accedi");
 const dashscreen = document.getElementById("dash-screen"); 
 const comunedash = document.getElementById("comunedash");
 const comunedash2 = document.getElementById("comunedash2");
+const comunedash0 = document.getElementById("comunedash0");
 
 const SUPABASE_URL = "https://czdakmcnkqvcxwkgyhwx.supabase.co";       // dal tuo progetto
 const SUPABASE_ANON_KEY = "sb_publishable_4azTkKHrQCK-T-7rlj5Hzg_3WeWnLcK"; // dal tuo progetto
@@ -210,6 +211,7 @@ async function caricaDatiUtente() {
     cittaInput.value = data.citta;
     comunedash.textContent = data.citta;
     comunedash2.textContent = data.citta;
+    comunedash0.textContent = data.citta;
     potenzaInput.value = data.impianto_kw;
 
     // Aggiorna automaticamente la stima
