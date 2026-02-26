@@ -83,6 +83,7 @@ async function caricaValore(citta) {
     if (data.successo && data.valore) {
       valoreEl.textContent = `${(parseFloat(data.valore) * fattore).toFixed(1)} kWh Totali`;
       document.getElementById("divrisultato").textContent = `${(parseFloat(data.valore) * fattore).toFixed(1)} kWh Totali`;
+      document.getElementById("divrisultato0").textContent = `${(parseFloat(data.ieri) * fattore).toFixed(1)} kWh Totali`;
     } else {
       valoreEl.textContent = "Errore nel recupero";
     }
