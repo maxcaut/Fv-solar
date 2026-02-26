@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Endpoint API /meteo con parametro città oggi
 app.get("/meteo", async (req, res) => {
-  let citta = req.query.citta || "somma+vesuviana"; // default
+  let citta = req.query.citta || "napoli"; // default
   citta = citta.trim().toLowerCase().replace(/\s+/g, "+"); // sostituisci spazi con '+'
   const url = `https://www.ilmeteo.it/meteo/${citta}`;
   const oraAttuale = Date.now();
@@ -89,7 +89,7 @@ app.get("/meteo", async (req, res) => {
 
 // Endpoint API /meteo con parametro città domani
 app.get("/meteo/domani", async (req, res) => {
-  let citta = req.query.citta || "somma+vesuviana"; // default
+  let citta = req.query.citta || "napoli"; // default
   citta = citta.trim().toLowerCase().replace(/\s+/g, "+"); // sostituisci spazi con '+'
   const url = `https://www.ilmeteo.it/meteo/${citta}/domani`;
   const cacheKeyDomani = citta + "_domani";
