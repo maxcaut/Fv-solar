@@ -28,16 +28,26 @@ app.get("/meteo", async (req, res) => {
     // CONTROLLO CACHE
     const { data: cache } = await sb.from("cache_meteo").select("*").eq("citta", citta).maybeSingle();
 
+    let valoreIeriDaSalvare = cache ? cache.valore_ieri : null;
+
     if (cache) {
       const giornoSalvataggio = new Date(Number(cache.creato_il)).getDate();
       const giornoOggi = new Date(oraAttuale).getDate();
 
+      // Se è lo stesso giorno e siamo sotto il limite delle 4 ore
       if (oraAttuale - cache.creato_il < TEMPO_LIMITE && giornoSalvataggio === giornoOggi) {
         console.log(`>>> [CACHE OGGI] Dati validi per ${citta} (Salvati il: ${cache.data_leggibile})`);
         return res.json({
           successo: true,
-          valore: cache.valore
+          valore: cache.valore,
+          ieri: cache.valore_ieri
         });
+      }
+
+      // Se il giorno è cambiato, il vecchio "valore" diventa "ieri"
+      if (giornoSalvataggio !== giornoOggi) {
+        console.log(`>>> [ROTAZIONE] Giorno cambiato per ${citta}. Sposto oggi in ieri.`);
+        valoreIeriDaSalvare = cache.valore;
       }
     }
 
@@ -58,13 +68,15 @@ app.get("/meteo", async (req, res) => {
     await sb.from("cache_meteo").upsert([{ 
       citta: citta, 
       valore: valoreTrovato, 
+      valore_ieri: valoreIeriDaSalvare,
       creato_il: oraAttuale,
       data_leggibile: dataLeggibile 
     }]);
 
     res.json({
       successo: true,
-      valore: valoreTrovato
+      valore: valoreTrovato,
+      ieri: valoreIeriDaSalvare
     });
   } catch (error) {
     console.error(`!!! [ERRORE OGGI] ${citta}:`, error.message);
@@ -139,12 +151,12 @@ app.get("/", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
-// Endpoint root serve index.html
+// Endpoint privacy policy
 app.get("/privacy-policy", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "privacy-policy.html"));
 });
 
 app.listen(PORT, () => {
   console.log(`Server HelioTrack attivo sulla porta ${PORT}`);
-  console.log(`Monitoraggio cache Supabase abilitato.`);
+  console.log(`Monitoraggio cache Supabase abilitato con storico ieri.`);
 });
