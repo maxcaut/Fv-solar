@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Endpoint API /meteo con parametro città oggi
 app.get("/meteo", async (req, res) => {
-  let citta = req.query.citta || "napoli"; // default
+  let citta = req.query.citta || "somma+vesuviana"; // default
   citta = citta.trim().toLowerCase().replace(/\s+/g, "+"); // sostituisci spazi con '+'
   const url = `https://www.ilmeteo.it/meteo/${citta}`;
   const oraAttuale = Date.now();
@@ -33,6 +33,7 @@ app.get("/meteo", async (req, res) => {
       const giornoOggi = new Date(oraAttuale).getDate();
 
       if (oraAttuale - cache.creato_il < TEMPO_LIMITE && giornoSalvataggio === giornoOggi) {
+        console.log(`>>> [CACHE OGGI] Dati validi per ${citta} (Salvati il: ${cache.data_leggibile})`);
         return res.json({
           successo: true,
           valore: cache.valore
@@ -40,6 +41,7 @@ app.get("/meteo", async (req, res) => {
       }
     }
 
+    console.log(`>>> [SCRAPE OGGI] Nuova richiesta per ${citta}`);
     const response = await axios.get(url, {
       headers: { "User-Agent": "Mozilla/5.0" }
     });
@@ -49,7 +51,7 @@ app.get("/meteo", async (req, res) => {
     const match = testo.match(/\d+(\.\d+)?\s?kWh/);
     const valoreTrovato = match ? match[0] : null;
 
-    // DATA LEGGIBILE PER IL DB
+    // DATA LEGGIBILE PER IL DB E LOG
     const dataLeggibile = new Date(oraAttuale).toLocaleString("it-IT");
 
     // SALVATAGGIO IN CACHE
@@ -65,6 +67,7 @@ app.get("/meteo", async (req, res) => {
       valore: valoreTrovato
     });
   } catch (error) {
+    console.error(`!!! [ERRORE OGGI] ${citta}:`, error.message);
     res.status(500).json({
       successo: false,
       errore: error.message
@@ -74,7 +77,7 @@ app.get("/meteo", async (req, res) => {
 
 // Endpoint API /meteo con parametro città domani
 app.get("/meteo/domani", async (req, res) => {
-  let citta = req.query.citta || "napoli"; // default
+  let citta = req.query.citta || "somma+vesuviana"; // default
   citta = citta.trim().toLowerCase().replace(/\s+/g, "+"); // sostituisci spazi con '+'
   const url = `https://www.ilmeteo.it/meteo/${citta}/domani`;
   const cacheKeyDomani = citta + "_domani";
@@ -89,6 +92,7 @@ app.get("/meteo/domani", async (req, res) => {
       const giornoOggi = new Date(oraAttuale).getDate();
 
       if (oraAttuale - cache.creato_il < TEMPO_LIMITE && giornoSalvataggio === giornoOggi) {
+        console.log(`>>> [CACHE DOMANI] Dati validi per ${citta} (Salvati il: ${cache.data_leggibile})`);
         return res.json({
           successo: true,
           valore: cache.valore
@@ -96,6 +100,7 @@ app.get("/meteo/domani", async (req, res) => {
       }
     }
 
+    console.log(`>>> [SCRAPE DOMANI] Nuova richiesta per ${citta}`);
     const response = await axios.get(url, {
       headers: { "User-Agent": "Mozilla/5.0" }
     });
@@ -105,7 +110,7 @@ app.get("/meteo/domani", async (req, res) => {
     const match = testo.match(/\d+(\.\d+)?\s?kWh/);
     const valoreTrovato = match ? match[0] : null;
 
-    // DATA LEGGIBILE PER IL DB
+    // DATA LEGGIBILE PER IL DB E LOG
     const dataLeggibile = new Date(oraAttuale).toLocaleString("it-IT");
 
     // SALVATAGGIO IN CACHE
@@ -121,6 +126,7 @@ app.get("/meteo/domani", async (req, res) => {
       valore: valoreTrovato
     });
   } catch (error) {
+    console.error(`!!! [ERRORE DOMANI] ${citta}:`, error.message);
     res.status(500).json({
       successo: false,
       errore: error.message
@@ -139,5 +145,6 @@ app.get("/privacy-policy", (req, res) => {
 });
 
 app.listen(PORT, () => {
-  console.log(`Server attivo sulla porta ${PORT}`);
+  console.log(`Server HelioTrack attivo sulla porta ${PORT}`);
+  console.log(`Monitoraggio cache Supabase abilitato.`);
 });
