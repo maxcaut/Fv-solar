@@ -9,8 +9,8 @@ const PORT = process.env.PORT || 3000;
 
 // Configurazione Supabase
 const SUPABASE_URL = "https://czdakmcnkqvcxwkgyhwx.supabase.co";
-const SUPABASE_ANON_KEY = "sb_publishable_4azTkKHrQCK-T-7rlj5Hzg_3WeWnLcK";
-const sb = createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY;
+const sb = createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 
 const TEMPO_LIMITE = 4 * 60 * 60 * 1000; // 4 ore
 
