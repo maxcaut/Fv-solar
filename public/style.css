@@ -289,4 +289,10 @@ button:hover {
   transform: scale(1);
   background-color: white; /* Risalta rispetto agli altri */
   box-shadow: 8px 8px 25px  rgba(0, 199, 103, 0.511); /* Ombra più marcata per staccarlo dal fondo */
+
+}
+
+
+#impo{
+  margin-top: 15px;
 }
