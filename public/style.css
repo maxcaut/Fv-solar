@@ -289,10 +289,28 @@ button:hover {
   transform: scale(1);
   background-color: white; /* Risalta rispetto agli altri */
   box-shadow: 8px 8px 25px  rgba(0, 199, 103, 0.511); /* Ombra più marcata per staccarlo dal fondo */
-
+  animation: glow-pulse 3s ease-in-out infinite;
 }
 
 
 #impo{
   margin-top: 15px;
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    /* Bagliore minimo */
+    box-shadow: 0px 0px 25px 00px  rgba(0, 199, 103, 0.511); /* Ombra più marcata per staccarlo dal fondo */
+
+  }
+  50% {
+    /* Bagliore massimo e leggero cambio di colore */
+    box-shadow: 0px 0px 55px 5px rgba(0, 199, 103, 0.712); /* Ombra più marcata per staccarlo dal fondo */
+
+  }
+}
+
+#labelieri, #labeloggi, labeldomani{
+  font-weight: bold;
+
 }
