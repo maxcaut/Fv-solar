@@ -28,7 +28,14 @@ const comunedash0 = document.getElementById("comunedash0");
 const SUPABASE_URL = "https://czdakmcnkqvcxwkgyhwx.supabase.co";       // dal tuo progetto
 const SUPABASE_ANON_KEY = "sb_publishable_4azTkKHrQCK-T-7rlj5Hzg_3WeWnLcK"; // dal tuo progetto
 
-const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+// const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);  vecchia versione con login sempre attivo
+const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+  auth: {
+    storage: window.sessionStorage, // I dati vengono cancellati alla chiusura del browser/scheda
+    autoRefreshToken: true,
+    persistSession: true
+  }
+});
 
 
 
