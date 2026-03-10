@@ -156,6 +156,11 @@ app.get("/privacy-policy", (req, res) => {
   res.sendFile(path.join(__dirname, "public", "privacy-policy.html"));
 });
 
+// Endpoint termini e condizioni
+app.get("/termini-e-condizioni", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "Termini-e-condizioni.html"));
+});
+
 app.listen(PORT, () => {
   console.log(`Server HelioTrack attivo sulla porta ${PORT}`);
   console.log(`Monitoraggio cache Supabase abilitato con storico ieri.`);
