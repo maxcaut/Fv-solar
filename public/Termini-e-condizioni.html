@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note Legali - Heliotrack.it</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; max-width: 800px; margin: 0 auto; padding: 20px; background-color: #f4f7f6; }
+        header { text-align: center; margin-bottom: 40px; }
+        .container { background: #fff; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        h1 { color: #2c3e50; }
+        h2 { color: #e67e22; border-bottom: 2px solid #eee; padding-bottom: 10px; margin-top: 30px; }
+        h3 { color: #2c3e50; }
+        .nav-tabs { display: flex; gap: 10px; margin-bottom: 20px; border-bottom: 1px solid #ddd; }
+        .tab-link { padding: 10px 20px; cursor: pointer; border: none; background: none; font-weight: bold; color: #7f8c8d; }
+        .tab-link.active { color: #e67e22; border-bottom: 3px solid #e67e22; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .footer { text-align: center; margin-top: 40px; font-size: 0.9em; color: #7f8c8d; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 10px; }
+        code { background: #eee; padding: 2px 5px; border-radius: 4px; }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Heliotrack.it</h1>
+    <p>Informazioni Legali e Privacy</p>
+</header>
+
+<div class="container">
+    <div class="nav-tabs">
+        <button class="tab-link active" onclick="openTab(event, 'terms')">Termini e Condizioni</button>
+        <button class="tab-link" onclick="openTab(event, 'privacy')">Privacy & Cookie</button>
+    </div>
+
+    <div id="terms" class="tab-content active">
+        <h2>Termini e Condizioni d'Uso</h2>
+        <p>Benvenuto su <strong>Heliotrack.it</strong>. L'utilizzo di questa web app implica l'accettazione dei seguenti termini.</p>
+        
+        <h3>1. Natura del Servizio</h3>
+        <p>Heliotrack.it è un progetto amatoriale dedicato al tracciamento solare. I dati forniti hanno scopo puramente informativo e statistico.</p>
+        
+        <h3>2. Limitazione di Responsabilità</h3>
+        <p>Nonostante l'impegno nel fornire dati accurati, lo sviluppatore non garantisce l'assoluta precisione dei calcoli. Heliotrack.it non potrà essere ritenuto responsabile per:</p>
+        <ul>
+            <li>Errori tecnici o imprecisioni nei report.</li>
+            <li>Danni materiali o economici derivanti dall'uso delle informazioni fornite.</li>
+            <li>Interruzioni temporanee del servizio.</li>
+        </ul>
+
+        <h3>3. Registrazione Utente</h3>
+        <p>L'utente è l'unico responsabile della segretezza della propria password. In caso di smarrimento o uso non autorizzato, è necessario procedere al recupero o alla segnalazione immediata.</p>
+
+        <h3>4. Modifiche al Servizio</h3>
+        <p>Trattandosi di un progetto amatoriale, il servizio potrebbe essere modificato o interrotto in qualsiasi momento senza preavviso.</p>
+    </div>
+
+    <div id="privacy" class="tab-content">
+        <h2>Informativa sulla Privacy (GDPR)</h2>
+        <p>La tua privacy è importante. Ecco come gestiamo i tuoi dati su Heliotrack.it.</p>
+
+        <h3>1. Titolare del Trattamento</h3>
+        <p>Il trattamento dei dati è gestito dall'amministratore di Heliotrack.it. Per contatti: <code>info@heliotrack.it</code>.</p>
+
+        <h3>2. Dati Raccolti</h3>
+        <ul>
+            <li><strong>Email:</strong> Raccolta in fase di registrazione per identificare il tuo account e permetterti di salvare i tuoi report.</li>
+            <li><strong>Dati di Posizione:</strong> L'app richiede l'accesso alla posizione GPS del dispositivo per generare i report solari. Questi dati vengono elaborati per il calcolo tecnico e salvati solo se decidi di memorizzare il report nel tuo profilo.</li>
+        </ul>
+
+        <h3>3. Base Giuridica</h3>
+        <p>Trattiamo i tuoi dati sulla base del tuo <strong>consenso</strong> (fornito al momento della registrazione o della richiesta di geolocalizzazione) e per l'erogazione del servizio richiesto.</p>
+
+        <h3>4. Cookie Policy</h3>
+        <p>Heliotrack.it utilizza esclusivamente:</p>
+        <ul>
+            <li><strong>Cookie Tecnici:</strong> Necessari per gestire l'autenticazione (login) e la sicurezza della sessione.</li>
+        </ul>
+        <p>Non utilizziamo cookie di profilazione o di terze parti per scopi pubblicitari al momento.</p>
+
+        <h3>5. I tuoi Diritti</h3>
+        <p>Puoi richiedere in ogni momento la cancellazione del tuo account e di tutti i dati associati contattandoci via email o utilizzando le funzioni presenti nel tuo profilo.</p>
+    </div>
+</div>
+
+<div class="footer">
+    <p>&copy; 2024-2026 Heliotrack.it - Progetto Amatoriale</p>
+    <p><a href="/">Torna alla Home</a></p>
+</div>
+
+<script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tab-content");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tab-link");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+</script>
+
+</body>
+</html>
