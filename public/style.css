@@ -57,7 +57,7 @@ button {
   background: #007acc;
   color: white;
   border: none;
-  border-radius: 8px;
+  border-radius: 25px;
   cursor: pointer;
   transition: background 0.2s;
   margin-bottom: 20px;
@@ -139,6 +139,20 @@ button:hover {
   
 }
 
+#accedi{
+  display: block;
+  margin: 15px auto;
+  width: 80%;
+  
+}
+#pre-registrati{
+  width: 80%;
+   background-color: white;
+   border: 3px solid rgba(255,165,0,1) ;
+   color: rgba(255,165,0,1);
+
+}
+
 
 
 #loadBtn{
@@ -148,7 +162,7 @@ button:hover {
 #loginPassword{
  margin: 5px; 
  padding: 10px;
- margin-bottom: 25px;
+ margin-bottom: 15px;
 }
 
 #loginEmail{
@@ -165,7 +179,7 @@ button:hover {
 }
 
 
-#pre-registrati, #accedi, #saveBtn, #impo{
+ #accedi, #saveBtn, #impo{
   background-color:  rgba(255,165,0,1);
   
   
@@ -180,6 +194,7 @@ button:hover {
 #resetPasswordBtn{
   display: block;
   margin: 0 auto;
+  color: #6b7280;
 }
 
 /* ----------------------------------------------- */
