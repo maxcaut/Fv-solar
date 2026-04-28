@@ -266,6 +266,7 @@ button:hover {
   display: block;
   margin: 0 auto;
   
+  
 }
 
 #potenza-impianto{
@@ -285,6 +286,21 @@ button:hover {
 
 #saveBtn, #loadBtn{
   margin-bottom: 15px;
+  width: 80%;
+  justify-content: center;
+  align-items: center;
+}
+
+#changePasswordBtn{
+  display: block;
+  margin: 10px auto;
+  width: 80%;
+  background-color: white;
+  border: 3px solid #005fa3;
+  color: #005fa3;
+}
+#indietro{
+  width: 80%;
 }
 
 
